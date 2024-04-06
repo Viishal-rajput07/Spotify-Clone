@@ -17,7 +17,8 @@ function convertSecondsToFormat(seconds) {
 }
 
 async function getSong(folder) {
-  let a = await fetch(`/${folder}/`);
+  try{
+    let a = await fetch(`/${folder}/`);
   let response = await a.text();
   // console.log(response)
 
@@ -67,6 +68,12 @@ async function getSong(folder) {
   });
 
   return songs;
+  }
+
+  catch{
+    let audio = new Audio('songs/Arijit_singh/Kesariya.mp3')
+    audio.play()
+  }
 }
 
 function playmusic(track, pause = false) {
